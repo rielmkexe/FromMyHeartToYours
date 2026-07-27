@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From My Heart to Yours</title>
+    
+    <!-- Google Fonts: Reenie Beanie & Playfair Display for Title -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Container holding both elements */
+        .container {
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Envelope Styles */
+        .envelope-wrapper {
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope-img {
+            width: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .click-hint {
+            margin-top: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #777777;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Letter Container (Hidden initially) */
+        .letter-paper {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            background-color: #fdfbf7; /* Beige White */
+            padding: 50px 45px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0eae1;
+            width: 100%;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* Letter Typography */
+        .letter-paper h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .letter-content {
+            font-family: 'Reenie Beanie', cursive;
+            font-size: 1.85rem;
+            line-height: 1.5;
+            color: #2b2b2b;
+            word-spacing: 2px;
+        }
+
+        .letter-content p {
+            margin-bottom: 22px;
+        }
+
+        .signature {
+            margin-top: 35px;
+        }
+
+        /* Animation class applied via JS */
+        .show-letter {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hide-envelope {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 480px) {
+            .letter-paper {
+                padding: 35px 25px;
+            }
+            .letter-content {
+                font-size: 1.6rem;
+            }
+            .envelope-img {
+                width: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Clickable Envelope -->
+        <div class="envelope-wrapper" id="envelope">
+            <!-- Transparent PNG of a Love Letter Envelope -->
+            <img src="https://images.rawpixel.com/image_png_800/2025/01/24/07/03/rawpixel_png_element_vector_craft_paper_envelope_with_red_heart_sticker_3d_render_transparent_background_clipart_cutout_craft_paper_envelope_with_red_heart_sticker_3d_render_png.png" alt="Love Letter Envelope" class="envelope-img">
+            <div class="click-hint">Click to open</div>
+        </div>
+
+        <!-- Main Digital Letter -->
+        <div class="letter-paper" id="letter">
+            <h1>From My Heart to Yours</h1>
+            
+            <div class="letter-content">
+                <p>To my dearest, Erin</p>
+
+                <p>I couldn’t sleep properly last night. I know you’re still hurting deep inside after what happened, and I want to apologize again for everything I’ve done that caused you pain. I know I can’t undo the past or immediately erase the pain and doubts, but I am truly, deeply sorry.</p>
+
+                <p>I know bago pa lang tayo, and yet I’ve already hurt you. I’m so sorry for every time I’ve disappointed you, and for all the things you’re still keeping to yourself right now. Thank you for always being so understanding and loving. Please know that I will never take your love and kindness for granted.</p>
+
+                <p>I know saying “sorry” won’t magically fix things or erase the fear in your heart, but I hope you know this apology comes from the absolute deepest part of me. I completely understand if you’re still hurting or doubting me... I’m so sorry for triggering your fears. I know I can’t change what happened, but I can learn how to love and hold you the way your heart truly needs. You deserve the world, babu. You are so precious to me, and hurting you is the absolute last thing I ever wanted to do.</p>
+
+                <p>I love you so much. If only you knew how much better my life became the moment you entered it. I’m so thankful the universe let me meet and love someone like you. Moving forward, I will stay consistent. I will prove to you that my love is real and unconditional.</p>
+
+                <p>So please, let me keep learning about you. Let me learn how to hold your heart, and let me love you the way you deserve to be loved.</p>
+
+                <div class="signature">
+                    <p>Sincerely loving you,<br>Gab</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const letter = document.getElementById('letter');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('hide-envelope');
+            
+            // Display and smoothly animate letter in
+            letter.classList.add('show-letter');
+        });
+    </script>
+
+</body>
+</html>
